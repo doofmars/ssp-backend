@@ -12,6 +12,8 @@ info:
     name: MIT
     url: https://github.com/doofmars/ssp-backend/blob/master/LICENSE.md
   version: 1.0.0
+servers:
+  - url: http://localhost:8080
 tags:
   - name: lobby
     description: Lobby related code for finding and joining a game
