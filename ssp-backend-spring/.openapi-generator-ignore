@@ -22,3 +22,6 @@
 # Then explicitly reverse the ignore rule for a single file:
 #!docs/README.md
 pom.xml
+README.md
+src/main/resources/application.properties
+src/test/java/*
