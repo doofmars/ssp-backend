@@ -29,7 +29,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Game'
+              $ref: '#/components/schemas/CreateGame'
         required: true
       responses:
         '200':
@@ -75,6 +75,13 @@ paths:
       tags:
         - lobby
       description: Get all games
+      parameters:
+        - name: status
+          in: query
+          description: Status of the game
+          required: false
+          schema:
+            $ref: '#/components/schemas/GameStatus'
       responses:
         '200':
           description: Successful operation
@@ -95,105 +102,104 @@ components:
     Id:
       type: string
       format: int64
+    GameStatus:
+      type: string
+      enum:
+        - WAITING_FOR_GUEST
+        - SETUP_PLACE_FLAG
+        - SETUP_PLACE_TRAP
+        - SETUP_SHUFFLE_PAWNS
+        - RUNNING_PLAYER_TURN
+        - RUNNING_OPPONENT_TURN
+        - RUNNING_FIGHT
+        - RUNNING_SAME_WEAPON
+        - FINISHED_HOST_WIN
+        - FINISHED_GUEST_WIN
+        - FINISHED_DRAW
     CreateGame:
       type: object
       required:
-        - players
-        - rounds
-        - currentRound
-        - winner
+        - host
       properties:
-        id:
-          $ref: '#/components/schemas/Id'
-        players:
-          type: array
-          items:
-            $ref: '#/components/schemas/Player'
-        rounds:
-          type: array
-          items:
-            $ref: '#/components/schemas/Round'
-        currentRound:
-          type: integer
-          format: int64
-        winner:
-          type: string
-          enum:
-            - PLAYER_ONE
-            - PLAYER_TWO
-            - DRAW
+        host:
+          $ref: '#/components/schemas/Player'
     Game:
       type: object
       required:
         - id
-        - players
+        - host
+        - guest
         - rounds
         - currentRound
         - winner
       properties:
         id:
           $ref: '#/components/schemas/Id'
-        players:
-          type: array
-          items:
-            $ref: '#/components/schemas/Player'
-        rounds:
-          type: array
-          items:
-            $ref: '#/components/schemas/Round'
+        host:
+          $ref: '#/components/schemas/Player'
+        guest:
+          $ref: '#/components/schemas/Player'
+        board:
+          $ref: '#/components/schemas/Board'
+        status:
+          $ref: '#/components/schemas/GameStatus'
         currentRound:
           type: integer
           format: int64
         winner:
           type: string
           enum:
-            - PLAYER_ONE
-            - PLAYER_TWO
+            - HOST
+            - GUEST
             - DRAW
     Player:
       type: object
       required:
-        - id
         - name
-        - choice
       properties:
         id:
           type: integer
           format: int64
         name:
           type: string
-        choice:
-          type: string
-          enum:
-            - ROCK
-            - PAPER
-            - SCISSORS
-    Round:
+    Board:
       type: object
       required:
-        - id
-        - playerOne
-        - playerTwo
-        - winner
+        - width
+        - height
+        - grid
       properties:
-        id:
+        width:
           type: integer
           format: int64
-        playerOne:
+        height:
+          type: integer
+          format: int64
+        grid:
+          type: array
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/Pawn'
+              nullable: true
+    Pawn:
+      type: object
+      required:
+          - type
+          - player
+      properties:
+        items:
           type: string
           enum:
             - ROCK
             - PAPER
             - SCISSORS
-        playerTwo:
+            - TRAP
+            - FLAG
+            - EMPTY
+            -
+        player:
           type: string
           enum:
-            - ROCK
-            - PAPER
-            - SCISSORS
-        winner:
-          type: string
-          enum:
-            - PLAYER_ONE
-            - PLAYER_TWO
-            - DRAW
+            - HOST
+            - GUEST
