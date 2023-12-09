@@ -32,7 +32,8 @@ def game_put(create_game):
 
     :rtype: Union[Game, Tuple[Game, int], Tuple[Game, int, Dict[str, str]]
     """
-    return 'do some magic!'
+    game = Game.from_dict(create_game)
+    return game.to_dict(), 201
 
 
 def games_get(status=None):

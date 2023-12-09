@@ -31,7 +31,7 @@ paths:
         required: true
         x-body-name: create_game
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
