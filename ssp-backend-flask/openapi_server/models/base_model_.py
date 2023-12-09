@@ -3,19 +3,19 @@ import pprint
 import six
 import typing
 
-from swagger_server import util
+from openapi_server import util
 
 T = typing.TypeVar('T')
 
 
-class Model(object):
-    # swaggerTypes: The key is attribute name and the
+class Model():
+    # openapiTypes: The key is attribute name and the
     # value is attribute type.
-    swagger_types = {}
+    openapi_types: typing.Dict[str, type] = {}
 
     # attributeMap: The key is attribute name and the
     # value is json key in definition.
-    attribute_map = {}
+    attribute_map: typing.Dict[str, str] = {}
 
     @classmethod
     def from_dict(cls: typing.Type[T], dikt) -> T:
@@ -29,7 +29,7 @@ class Model(object):
         """
         result = {}
 
-        for attr, _ in six.iteritems(self.swagger_types):
+        for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
             if isinstance(value, list):
                 result[attr] = list(map(

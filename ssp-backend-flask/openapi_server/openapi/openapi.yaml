@@ -1,6 +1,5 @@
 openapi: 3.0.0
 info:
-  title: SSP-Online Backend
   description: |-
     This is a the backend for the SSP Online Game. It is a RESTful API that is used by the frontend to play the game.
 
@@ -10,19 +9,18 @@ info:
   license:
     name: MIT
     url: https://github.com/doofmars/ssp-backend/blob/master/LICENSE.md
+  title: SSP-Online Backend
   version: 1.0.0
 servers:
 - url: http://localhost:8080
 tags:
-- name: lobby
-  description: Lobby related code for finding and joining a game
-- name: game
-  description: Game related endpoint
+- description: Lobby related code for finding and joining a game
+  name: lobby
+- description: Game related endpoint
+  name: game
 paths:
   /game:
     put:
-      tags:
-      - lobby
       description: Create a new game
       operationId: game_put
       requestBody:
@@ -33,7 +31,6 @@ paths:
         required: true
       responses:
         "200":
-          description: Successful operation
           content:
             application/json:
               schema:
@@ -41,114 +38,116 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Game'
+          description: Successful operation
         "400":
           description: Invalid ID supplied
         "404":
           description: Game not found
         "405":
           description: Invalid input
-      x-openapi-router-controller: swagger_server.controllers.lobby_controller
-  /game/{gameId}:
-    get:
       tags:
       - lobby
+      x-openapi-router-controller: openapi_server.controllers.lobby_controller
+  /game/{gameId}:
+    get:
       description: Get information about a game
       operationId: game_game_id_get
       parameters:
-      - name: gameId
-        in: path
-        description: ID of game to return
-        required: true
-        style: simple
+      - description: ID of game to return
         explode: false
+        in: path
+        name: gameId
+        required: true
         schema:
           $ref: '#/components/schemas/Id'
+        style: simple
       responses:
         "200":
-          description: Successful operation
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Game'
+          description: Successful operation
         "400":
           description: Invalid ID supplied
         "404":
           description: Game not found
-      x-openapi-router-controller: swagger_server.controllers.lobby_controller
+      tags:
+      - lobby
+      x-openapi-router-controller: openapi_server.controllers.lobby_controller
   /game/{gameId}/turn:
     post:
-      tags:
-      - game
       description: Do a turn
       operationId: game_game_id_turn_post
       parameters:
-      - name: gameId
-        in: path
-        description: ID of game to return
-        required: true
-        style: simple
+      - description: ID of game to return
         explode: false
+        in: path
+        name: gameId
+        required: true
         schema:
           $ref: '#/components/schemas/Id'
+        style: simple
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/gameId_turn_body'
+              $ref: '#/components/schemas/_game__gameId__turn_post_request'
         required: true
       responses:
         "200":
-          description: Successful operation
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Game'
+          description: Successful operation
         "400":
           description: Invalid ID supplied
         "404":
           description: Game not found
         "405":
           description: Invalid input
-      x-openapi-router-controller: swagger_server.controllers.game_controller
+      tags:
+      - game
+      x-openapi-router-controller: openapi_server.controllers.game_controller
   /games:
     get:
-      tags:
-      - lobby
       description: Get all games
       operationId: games_get
       parameters:
-      - name: status
-        in: query
-        description: Status of the game
-        required: false
-        style: form
+      - description: Status of the game
         explode: true
+        in: query
+        name: status
+        required: false
         schema:
           $ref: '#/components/schemas/GameStatus'
+        style: form
       responses:
         "200":
-          description: Successful operation
           content:
             application/json:
               schema:
-                type: array
                 items:
                   $ref: '#/components/schemas/Game'
-                x-content-type: application/json
+                type: array
+          description: Successful operation
         "400":
           description: Invalid ID supplied
         "404":
           description: Game not found
         "405":
           description: Invalid input
-      x-openapi-router-controller: swagger_server.controllers.lobby_controller
+      tags:
+      - lobby
+      x-openapi-router-controller: openapi_server.controllers.lobby_controller
 components:
   schemas:
     Id:
-      type: string
       format: int64
-    GameStatus:
+      title: id
       type: string
+    GameStatus:
       enum:
       - WAITING_FOR_GUEST
       - SETUP_PLACE_FLAG
@@ -161,25 +160,53 @@ components:
       - FINISHED_HOST_WIN
       - FINISHED_GUEST_WIN
       - FINISHED_DRAW
+      title: GameStatus
+      type: string
     CreateGame:
-      required:
-      - host
-      type: object
+      example:
+        host:
+          name: name
+          id: 0
+          key: key
       properties:
         host:
           $ref: '#/components/schemas/Player'
-    Game:
       required:
-      - currentRound
-      - guest
       - host
-      - id
-      - rounds
-      - winner
+      title: CreateGame
       type: object
+    Game:
+      example:
+        currentRound: 5
+        winner: NONE
+        last_update: 2000-01-23T04:56:07.000+00:00
+        host:
+          name: name
+          id: 0
+          key: key
+        guest:
+          name: name
+          id: 0
+          key: key
+        id: id
+        board:
+          grid:
+          - - owner: HOST
+              item: ROCK
+            - owner: HOST
+              item: ROCK
+          - - owner: HOST
+              item: ROCK
+            - owner: HOST
+              item: ROCK
+          width: 6
+          height: 1
+        status: null
       properties:
         id:
-          $ref: '#/components/schemas/Id'
+          format: int64
+          title: id
+          type: string
         host:
           $ref: '#/components/schemas/Player'
         guest:
@@ -189,97 +216,92 @@ components:
         status:
           $ref: '#/components/schemas/GameStatus'
         currentRound:
-          type: integer
           format: int64
+          title: currentRound
+          type: integer
         last_update:
-          type: string
           format: date-time
-        winner:
+          title: last_update
           type: string
+        winner:
           enum:
           - NONE
           - HOST
           - GUEST
           - DRAW
-      example:
-        currentRound: 5
-        winner: NONE
-        last_update: 2000-01-23T04:56:07.000+00:00
-        host:
-          name: name
-          id: 0
-          key: key
-        guest: null
-        id: id
-        board:
-          grid:
-          - - items: ROCK
-              player: HOST
-            - items: ROCK
-              player: HOST
-          - - items: ROCK
-              player: HOST
-            - items: ROCK
-              player: HOST
-          width: 6
-          height: 1
-        status: WAITING_FOR_GUEST
-    Player:
+          title: winner
+          type: string
       required:
-      - name
+      - currentRound
+      - guest
+      - host
+      - id
+      - rounds
+      - winner
+      title: Game
       type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        name:
-          type: string
-        key:
-          type: string
-          description: Identify the player against the server
+    Player:
       example:
         name: name
         id: 0
         key: key
+      properties:
+        id:
+          format: int64
+          title: id
+          type: integer
+        name:
+          title: name
+          type: string
+        key:
+          description: Identify the player against the server
+          title: key
+          type: string
+      required:
+      - name
+      title: Player
+      type: object
     Board:
+      example:
+        grid:
+        - - owner: HOST
+            item: ROCK
+          - owner: HOST
+            item: ROCK
+        - - owner: HOST
+            item: ROCK
+          - owner: HOST
+            item: ROCK
+        width: 6
+        height: 1
+      properties:
+        width:
+          format: int64
+          title: width
+          type: integer
+        height:
+          format: int64
+          title: height
+          type: integer
+        grid:
+          items:
+            items:
+              $ref: '#/components/schemas/Pawn'
+            type: array
+          title: grid
+          type: array
       required:
       - grid
       - height
       - width
+      title: Board
       type: object
-      properties:
-        width:
-          type: integer
-          format: int64
-        height:
-          type: integer
-          format: int64
-        grid:
-          type: array
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/Pawn'
-      example:
-        grid:
-        - - items: ROCK
-            player: HOST
-          - items: ROCK
-            player: HOST
-        - - items: ROCK
-            player: HOST
-          - items: ROCK
-            player: HOST
-        width: 6
-        height: 1
     Pawn:
-      required:
-      - player
-      - type
-      type: object
+      example:
+        owner: HOST
+        item: ROCK
       properties:
-        items:
-          type: string
+        item:
           enum:
           - ROCK
           - PAPER
@@ -287,35 +309,34 @@ components:
           - TRAP
           - FLAG
           - EMPTY
-          - null
-        player:
+          title: item
           type: string
+        owner:
           enum:
           - HOST
           - GUEST
-      example:
-        items: ROCK
-        player: HOST
-    gameId_turn_body:
+          title: owner
+          type: string
       required:
-      - pawn
-      - player
-      - x
-      - "y"
+      - item
+      - owner
+      title: Pawn
       type: object
+    _game__gameId__turn_post_request:
       properties:
         player:
           $ref: '#/components/schemas/Player'
         pawn:
           $ref: '#/components/schemas/Pawn'
         x:
-          type: integer
           format: int64
+          title: x
+          type: integer
         "y":
-          type: integer
           format: int64
+          title: "y"
+          type: integer
         action:
-          type: string
           enum:
           - MOVE_X-1
           - MOVE_X+1
@@ -324,4 +345,12 @@ components:
           - PLACE_TRAP
           - PLACE_FLAG
           - SHUFFLE_PAWNS
-
+          title: action
+          type: string
+      required:
+      - pawn
+      - player
+      - x
+      - "y"
+      title: _game__gameId__turn_post_request
+      type: object

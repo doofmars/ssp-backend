@@ -2,7 +2,7 @@ import datetime
 
 import six
 import typing
-from swagger_server import type_util
+from openapi_server import typing_utils
 
 
 def _deserialize(data, klass):
@@ -24,10 +24,10 @@ def _deserialize(data, klass):
         return deserialize_date(data)
     elif klass == datetime.datetime:
         return deserialize_datetime(data)
-    elif type_util.is_generic(klass):
-        if type_util.is_list(klass):
+    elif typing_utils.is_generic(klass):
+        if typing_utils.is_list(klass):
             return _deserialize_list(data, klass.__args__[0])
-        if type_util.is_dict(klass):
+        if typing_utils.is_dict(klass):
             return _deserialize_dict(data, klass.__args__[1])
     else:
         return deserialize_model(data, klass)
@@ -67,6 +67,9 @@ def deserialize_date(string):
     :return: date.
     :rtype: date
     """
+    if string is None:
+      return None
+    
     try:
         from dateutil.parser import parse
         return parse(string).date()
@@ -84,6 +87,9 @@ def deserialize_datetime(string):
     :return: datetime.
     :rtype: datetime
     """
+    if string is None:
+      return None
+    
     try:
         from dateutil.parser import parse
         return parse(string)
@@ -101,10 +107,10 @@ def deserialize_model(data, klass):
     """
     instance = klass()
 
-    if not instance.swagger_types:
+    if not instance.openapi_types:
         return data
 
-    for attr, attr_type in six.iteritems(instance.swagger_types):
+    for attr, attr_type in six.iteritems(instance.openapi_types):
         if data is not None \
                 and instance.attribute_map[attr] in data \
                 and isinstance(data, (list, dict)):

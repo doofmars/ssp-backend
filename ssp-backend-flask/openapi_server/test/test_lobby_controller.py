@@ -1,15 +1,15 @@
 # coding: utf-8
 
 from __future__ import absolute_import
+import unittest
 
 from flask import json
 from six import BytesIO
 
-from swagger_server.models.create_game import CreateGame  # noqa: E501
-from swagger_server.models.game import Game  # noqa: E501
-from swagger_server.models.game_status import GameStatus  # noqa: E501
-from swagger_server.models.id import Id  # noqa: E501
-from swagger_server.test import BaseTestCase
+from openapi_server.models.create_game import CreateGame  # noqa: E501
+from openapi_server.models.game import Game  # noqa: E501
+from openapi_server.models.game_status import GameStatus  # noqa: E501
+from openapi_server.test import BaseTestCase
 
 
 class TestLobbyController(BaseTestCase):
@@ -20,9 +20,13 @@ class TestLobbyController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Accept': 'application/json',
+        }
         response = self.client.open(
-            '/game/{gameId}'.format(game_id=Id()),
-            method='GET')
+            '/game/{game_id}'.format(game_id='game_id_example'),
+            method='GET',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -31,11 +35,16 @@ class TestLobbyController(BaseTestCase):
 
         
         """
-        body = CreateGame()
+        create_game = {"host":{"name":"name","id":0,"key":"key"}}
+        headers = { 
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        }
         response = self.client.open(
             '/game',
             method='PUT',
-            data=json.dumps(body),
+            headers=headers,
+            data=json.dumps(create_game),
             content_type='application/json')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
@@ -45,15 +54,18 @@ class TestLobbyController(BaseTestCase):
 
         
         """
-        query_string = [('status', GameStatus())]
+        query_string = [('status', openapi_server.GameStatus())]
+        headers = { 
+            'Accept': 'application/json',
+        }
         response = self.client.open(
             '/games',
             method='GET',
+            headers=headers,
             query_string=query_string)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
 
 if __name__ == '__main__':
-    import unittest
     unittest.main()
