@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import connexion
+from flask import render_template
 
 from openapi_server import encoder
 
@@ -11,6 +12,10 @@ def main():
     app.add_api('openapi.yaml',
                 arguments={'title': 'SSP-Online Backend'},
                 pythonic_params=True)
+
+    @app.route("/")
+    def home():
+        return render_template("index.html")
 
     app.run(port=8080)
 
