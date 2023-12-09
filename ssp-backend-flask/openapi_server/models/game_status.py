@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server import util
 
 
@@ -18,17 +15,17 @@ class GameStatus(Model):
     """
     allowed enum values
     """
-    WAITING_FOR_GUEST = "WAITING_FOR_GUEST"
-    SETUP_PLACE_FLAG = "SETUP_PLACE_FLAG"
-    SETUP_PLACE_TRAP = "SETUP_PLACE_TRAP"
-    SETUP_SHUFFLE_PAWNS = "SETUP_SHUFFLE_PAWNS"
-    RUNNING_PLAYER_TURN = "RUNNING_PLAYER_TURN"
-    RUNNING_OPPONENT_TURN = "RUNNING_OPPONENT_TURN"
-    RUNNING_FIGHT = "RUNNING_FIGHT"
-    RUNNING_SAME_WEAPON = "RUNNING_SAME_WEAPON"
-    FINISHED_HOST_WIN = "FINISHED_HOST_WIN"
-    FINISHED_GUEST_WIN = "FINISHED_GUEST_WIN"
-    FINISHED_DRAW = "FINISHED_DRAW"
+    WAITING_FOR_GUEST = 'WAITING_FOR_GUEST'
+    SETUP_PLACE_FLAG = 'SETUP_PLACE_FLAG'
+    SETUP_PLACE_TRAP = 'SETUP_PLACE_TRAP'
+    SETUP_SHUFFLE_PAWNS = 'SETUP_SHUFFLE_PAWNS'
+    RUNNING_PLAYER_TURN = 'RUNNING_PLAYER_TURN'
+    RUNNING_OPPONENT_TURN = 'RUNNING_OPPONENT_TURN'
+    RUNNING_FIGHT = 'RUNNING_FIGHT'
+    RUNNING_SAME_WEAPON = 'RUNNING_SAME_WEAPON'
+    FINISHED_HOST_WIN = 'FINISHED_HOST_WIN'
+    FINISHED_GUEST_WIN = 'FINISHED_GUEST_WIN'
+    FINISHED_DRAW = 'FINISHED_DRAW'
     def __init__(self):  # noqa: E501
         """GameStatus - a model defined in OpenAPI
 

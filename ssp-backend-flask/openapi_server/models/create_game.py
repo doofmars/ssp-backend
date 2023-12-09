@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server.models.player import Player
 from openapi_server import util
 
@@ -31,7 +28,7 @@ class CreateGame(Model):
             'host': 'host'
         }
 
-        self.host = host
+        self._host = host
 
     @classmethod
     def from_dict(cls, dikt) -> 'CreateGame':
@@ -45,7 +42,7 @@ class CreateGame(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def host(self):
+    def host(self) -> Player:
         """Gets the host of this CreateGame.
 
 
@@ -55,7 +52,7 @@ class CreateGame(Model):
         return self._host
 
     @host.setter
-    def host(self, host):
+    def host(self, host: Player):
         """Sets the host of this CreateGame.
 
 

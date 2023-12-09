@@ -10,10 +10,10 @@ openapi_server/__main__.py
 openapi_server/controllers/__init__.py
 openapi_server/controllers/game_controller.py
 openapi_server/controllers/lobby_controller.py
-openapi_server/controllers/security_controller_.py
+openapi_server/controllers/security_controller.py
 openapi_server/encoder.py
 openapi_server/models/__init__.py
-openapi_server/models/base_model_.py
+openapi_server/models/base_model.py
 openapi_server/models/board.py
 openapi_server/models/create_game.py
 openapi_server/models/game.py

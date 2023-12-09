@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server.models.pawn import Pawn
 from openapi_server.models.player import Player
 from openapi_server import util
@@ -49,11 +46,11 @@ class GameGameIdTurnPostRequest(Model):
             'action': 'action'
         }
 
-        self.player = player
-        self.pawn = pawn
-        self.x = x
-        self.y = y
-        self.action = action
+        self._player = player
+        self._pawn = pawn
+        self._x = x
+        self._y = y
+        self._action = action
 
     @classmethod
     def from_dict(cls, dikt) -> 'GameGameIdTurnPostRequest':
@@ -67,7 +64,7 @@ class GameGameIdTurnPostRequest(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def player(self):
+    def player(self) -> Player:
         """Gets the player of this GameGameIdTurnPostRequest.
 
 
@@ -77,7 +74,7 @@ class GameGameIdTurnPostRequest(Model):
         return self._player
 
     @player.setter
-    def player(self, player):
+    def player(self, player: Player):
         """Sets the player of this GameGameIdTurnPostRequest.
 
 
@@ -90,7 +87,7 @@ class GameGameIdTurnPostRequest(Model):
         self._player = player
 
     @property
-    def pawn(self):
+    def pawn(self) -> Pawn:
         """Gets the pawn of this GameGameIdTurnPostRequest.
 
 
@@ -100,7 +97,7 @@ class GameGameIdTurnPostRequest(Model):
         return self._pawn
 
     @pawn.setter
-    def pawn(self, pawn):
+    def pawn(self, pawn: Pawn):
         """Sets the pawn of this GameGameIdTurnPostRequest.
 
 
@@ -113,7 +110,7 @@ class GameGameIdTurnPostRequest(Model):
         self._pawn = pawn
 
     @property
-    def x(self):
+    def x(self) -> int:
         """Gets the x of this GameGameIdTurnPostRequest.
 
 
@@ -123,7 +120,7 @@ class GameGameIdTurnPostRequest(Model):
         return self._x
 
     @x.setter
-    def x(self, x):
+    def x(self, x: int):
         """Sets the x of this GameGameIdTurnPostRequest.
 
 
@@ -136,7 +133,7 @@ class GameGameIdTurnPostRequest(Model):
         self._x = x
 
     @property
-    def y(self):
+    def y(self) -> int:
         """Gets the y of this GameGameIdTurnPostRequest.
 
 
@@ -146,7 +143,7 @@ class GameGameIdTurnPostRequest(Model):
         return self._y
 
     @y.setter
-    def y(self, y):
+    def y(self, y: int):
         """Sets the y of this GameGameIdTurnPostRequest.
 
 
@@ -159,7 +156,7 @@ class GameGameIdTurnPostRequest(Model):
         self._y = y
 
     @property
-    def action(self):
+    def action(self) -> str:
         """Gets the action of this GameGameIdTurnPostRequest.
 
 
@@ -169,7 +166,7 @@ class GameGameIdTurnPostRequest(Model):
         return self._action
 
     @action.setter
-    def action(self, action):
+    def action(self, action: str):
         """Sets the action of this GameGameIdTurnPostRequest.
 
 

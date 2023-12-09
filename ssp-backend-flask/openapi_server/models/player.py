@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server import util
 
 
@@ -37,9 +34,9 @@ class Player(Model):
             'key': 'key'
         }
 
-        self.id = id
-        self.name = name
-        self.key = key
+        self._id = id
+        self._name = name
+        self._key = key
 
     @classmethod
     def from_dict(cls, dikt) -> 'Player':
@@ -53,7 +50,7 @@ class Player(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def id(self):
+    def id(self) -> int:
         """Gets the id of this Player.
 
 
@@ -63,7 +60,7 @@ class Player(Model):
         return self._id
 
     @id.setter
-    def id(self, id):
+    def id(self, id: int):
         """Sets the id of this Player.
 
 
@@ -74,7 +71,7 @@ class Player(Model):
         self._id = id
 
     @property
-    def name(self):
+    def name(self) -> str:
         """Gets the name of this Player.
 
 
@@ -84,7 +81,7 @@ class Player(Model):
         return self._name
 
     @name.setter
-    def name(self, name):
+    def name(self, name: str):
         """Sets the name of this Player.
 
 
@@ -97,7 +94,7 @@ class Player(Model):
         self._name = name
 
     @property
-    def key(self):
+    def key(self) -> str:
         """Gets the key of this Player.
 
         Identify the player against the server  # noqa: E501
@@ -108,7 +105,7 @@ class Player(Model):
         return self._key
 
     @key.setter
-    def key(self, key):
+    def key(self, key: str):
         """Sets the key of this Player.
 
         Identify the player against the server  # noqa: E501

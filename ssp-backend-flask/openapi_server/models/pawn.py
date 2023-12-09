@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server import util
 
 
@@ -33,8 +30,8 @@ class Pawn(Model):
             'owner': 'owner'
         }
 
-        self.item = item
-        self.owner = owner
+        self._item = item
+        self._owner = owner
 
     @classmethod
     def from_dict(cls, dikt) -> 'Pawn':
@@ -48,7 +45,7 @@ class Pawn(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def item(self):
+    def item(self) -> str:
         """Gets the item of this Pawn.
 
 
@@ -58,7 +55,7 @@ class Pawn(Model):
         return self._item
 
     @item.setter
-    def item(self, item):
+    def item(self, item: str):
         """Sets the item of this Pawn.
 
 
@@ -75,7 +72,7 @@ class Pawn(Model):
         self._item = item
 
     @property
-    def owner(self):
+    def owner(self) -> str:
         """Gets the owner of this Pawn.
 
 
@@ -85,7 +82,7 @@ class Pawn(Model):
         return self._owner
 
     @owner.setter
-    def owner(self, owner):
+    def owner(self, owner: str):
         """Sets the owner of this Pawn.
 
 

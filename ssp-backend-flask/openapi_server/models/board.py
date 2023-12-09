@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server.models.pawn import Pawn
 from openapi_server import util
 
@@ -39,9 +36,9 @@ class Board(Model):
             'grid': 'grid'
         }
 
-        self.width = width
-        self.height = height
-        self.grid = grid
+        self._width = width
+        self._height = height
+        self._grid = grid
 
     @classmethod
     def from_dict(cls, dikt) -> 'Board':
@@ -55,7 +52,7 @@ class Board(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def width(self):
+    def width(self) -> int:
         """Gets the width of this Board.
 
 
@@ -65,7 +62,7 @@ class Board(Model):
         return self._width
 
     @width.setter
-    def width(self, width):
+    def width(self, width: int):
         """Sets the width of this Board.
 
 
@@ -78,7 +75,7 @@ class Board(Model):
         self._width = width
 
     @property
-    def height(self):
+    def height(self) -> int:
         """Gets the height of this Board.
 
 
@@ -88,7 +85,7 @@ class Board(Model):
         return self._height
 
     @height.setter
-    def height(self, height):
+    def height(self, height: int):
         """Sets the height of this Board.
 
 
@@ -101,7 +98,7 @@ class Board(Model):
         self._height = height
 
     @property
-    def grid(self):
+    def grid(self) -> List[List[Pawn]]:
         """Gets the grid of this Board.
 
 
@@ -111,7 +108,7 @@ class Board(Model):
         return self._grid
 
     @grid.setter
-    def grid(self, grid):
+    def grid(self, grid: List[List[Pawn]]):
         """Sets the grid of this Board.
 
 

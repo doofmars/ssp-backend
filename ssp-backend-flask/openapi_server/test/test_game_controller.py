@@ -1,10 +1,6 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 import unittest
 
 from flask import json
-from six import BytesIO
 
 from openapi_server.models.game import Game  # noqa: E501
 from openapi_server.models.game_game_id_turn_post_request import GameGameIdTurnPostRequest  # noqa: E501

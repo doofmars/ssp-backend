@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server.models.board import Board
 from openapi_server.models.game_status import GameStatus
 from openapi_server.models.player import Player
@@ -63,14 +60,14 @@ class Game(Model):
             'winner': 'winner'
         }
 
-        self.id = id
-        self.host = host
-        self.guest = guest
-        self.board = board
-        self.status = status
-        self.current_round = current_round
-        self.last_update = last_update
-        self.winner = winner
+        self._id = id
+        self._host = host
+        self._guest = guest
+        self._board = board
+        self._status = status
+        self._current_round = current_round
+        self._last_update = last_update
+        self._winner = winner
 
     @classmethod
     def from_dict(cls, dikt) -> 'Game':
@@ -84,7 +81,7 @@ class Game(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def id(self):
+    def id(self) -> str:
         """Gets the id of this Game.
 
 
@@ -94,7 +91,7 @@ class Game(Model):
         return self._id
 
     @id.setter
-    def id(self, id):
+    def id(self, id: str):
         """Sets the id of this Game.
 
 
@@ -107,7 +104,7 @@ class Game(Model):
         self._id = id
 
     @property
-    def host(self):
+    def host(self) -> Player:
         """Gets the host of this Game.
 
 
@@ -117,7 +114,7 @@ class Game(Model):
         return self._host
 
     @host.setter
-    def host(self, host):
+    def host(self, host: Player):
         """Sets the host of this Game.
 
 
@@ -130,7 +127,7 @@ class Game(Model):
         self._host = host
 
     @property
-    def guest(self):
+    def guest(self) -> Player:
         """Gets the guest of this Game.
 
 
@@ -140,7 +137,7 @@ class Game(Model):
         return self._guest
 
     @guest.setter
-    def guest(self, guest):
+    def guest(self, guest: Player):
         """Sets the guest of this Game.
 
 
@@ -153,7 +150,7 @@ class Game(Model):
         self._guest = guest
 
     @property
-    def board(self):
+    def board(self) -> Board:
         """Gets the board of this Game.
 
 
@@ -163,7 +160,7 @@ class Game(Model):
         return self._board
 
     @board.setter
-    def board(self, board):
+    def board(self, board: Board):
         """Sets the board of this Game.
 
 
@@ -174,7 +171,7 @@ class Game(Model):
         self._board = board
 
     @property
-    def status(self):
+    def status(self) -> GameStatus:
         """Gets the status of this Game.
 
 
@@ -184,7 +181,7 @@ class Game(Model):
         return self._status
 
     @status.setter
-    def status(self, status):
+    def status(self, status: GameStatus):
         """Sets the status of this Game.
 
 
@@ -195,7 +192,7 @@ class Game(Model):
         self._status = status
 
     @property
-    def current_round(self):
+    def current_round(self) -> int:
         """Gets the current_round of this Game.
 
 
@@ -205,7 +202,7 @@ class Game(Model):
         return self._current_round
 
     @current_round.setter
-    def current_round(self, current_round):
+    def current_round(self, current_round: int):
         """Sets the current_round of this Game.
 
 
@@ -218,7 +215,7 @@ class Game(Model):
         self._current_round = current_round
 
     @property
-    def last_update(self):
+    def last_update(self) -> datetime:
         """Gets the last_update of this Game.
 
 
@@ -228,7 +225,7 @@ class Game(Model):
         return self._last_update
 
     @last_update.setter
-    def last_update(self, last_update):
+    def last_update(self, last_update: datetime):
         """Sets the last_update of this Game.
 
 
@@ -239,7 +236,7 @@ class Game(Model):
         self._last_update = last_update
 
     @property
-    def winner(self):
+    def winner(self) -> str:
         """Gets the winner of this Game.
 
 
@@ -249,7 +246,7 @@ class Game(Model):
         return self._winner
 
     @winner.setter
-    def winner(self, winner):
+    def winner(self, winner: str):
         """Sets the winner of this Game.
 
 
