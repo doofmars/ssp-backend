@@ -1,24 +1,16 @@
-#!/usr/bin/env python3
+from flask import render_template  # Remove: import Flask
 
 import connexion
-from flask import render_template
 
-from openapi_server import encoder
+app = connexion.FlaskApp(__name__, specification_dir='./openapi/')
 
-
-def main():
-    app = connexion.App(__name__, specification_dir='./openapi/')
-    app.app.json_encoder = encoder.JSONEncoder
-    app.add_api('openapi.yaml',
-                arguments={'title': 'SSP-Online Backend'},
-                pythonic_params=True)
-
-    @app.route("/")
-    def home():
-        return render_template("index.html")
-
-    app.run(port=8080)
+app.add_api("openapi.yaml")
 
 
-if __name__ == '__main__':
-    main()
+@app.route("/")
+def home():
+    return render_template("index.html")
+
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8080)
