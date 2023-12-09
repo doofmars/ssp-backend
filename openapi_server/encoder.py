@@ -1,6 +1,6 @@
 from connexion.frameworks.flask import FlaskJSONProvider
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 
 
 class JSONEncoder(FlaskJSONProvider):

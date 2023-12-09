@@ -21,3 +21,10 @@
 #docs/*.md
 # Then explicitly reverse the ignore rule for a single file:
 #!docs/README.md
+
+requirements.txt
+openapi_server/encoder.py
+openapi_server/controllers/game_controller.py
+openapi_server/controllers/lobby_controller.py
+openapi_server/controllers/security_controller_.py
+git_push.sh

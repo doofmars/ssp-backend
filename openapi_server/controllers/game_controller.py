@@ -3,12 +3,12 @@ from typing import Dict
 from typing import Tuple
 from typing import Union
 
-from openapi_server.models.game import Game  # noqa: E501
-from openapi_server.models.game_game_id_turn_post_request import GameGameIdTurnPostRequest  # noqa: E501
+from openapi_server.models.game import Game
+from openapi_server.models.game_game_id_turn_post_request import GameGameIdTurnPostRequest
 from openapi_server import util
 
 
-def game_game_id_turn_post(game_id, game_game_id_turn_post_request):  # noqa: E501
+def game_game_id_turn_post(game_id, game_game_id_turn_post_request):
     """game_game_id_turn_post
 
     Do a turn # noqa: E501
@@ -20,6 +20,4 @@ def game_game_id_turn_post(game_id, game_game_id_turn_post_request):  # noqa: E5
 
     :rtype: Union[Game, Tuple[Game, int], Tuple[Game, int, Dict[str, str]]
     """
-    if connexion.request.is_json:
-        game_game_id_turn_post_request = GameGameIdTurnPostRequest.from_dict(connexion.request.get_json())  # noqa: E501
     return 'do some magic!'

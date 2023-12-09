@@ -29,13 +29,11 @@ paths:
             schema:
               $ref: '#/components/schemas/CreateGame'
         required: true
+        x-body-name: create_game
       responses:
         "200":
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/Game'
-            application/xml:
               schema:
                 $ref: '#/components/schemas/Game'
           description: Successful operation
@@ -94,6 +92,7 @@ paths:
             schema:
               $ref: '#/components/schemas/_game__gameId__turn_post_request'
         required: true
+        x-body-name: turn
       responses:
         "200":
           content:
@@ -328,9 +327,9 @@ components:
           $ref: '#/components/schemas/Player'
         pawn:
           $ref: '#/components/schemas/Pawn'
-        x:
+        "x":
           format: int64
-          title: x
+          title: "x"
           type: integer
         "y":
           format: int64
@@ -350,7 +349,7 @@ components:
       required:
       - pawn
       - player
-      - x
+      - "x"
       - "y"
       title: _game__gameId__turn_post_request
       type: object
