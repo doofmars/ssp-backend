@@ -244,14 +244,13 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/Pawn'
-              nullable: true
     Pawn:
       type: object
       required:
-          - type
-          - player
+          - item
+          - owner
       properties:
-        items:
+        item:
           type: string
           enum:
             - ROCK
@@ -260,8 +259,7 @@ components:
             - TRAP
             - FLAG
             - EMPTY
-            -
-        player:
+        owner:
           type: string
           enum:
             - HOST
