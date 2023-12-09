@@ -22,9 +22,15 @@
 # Then explicitly reverse the ignore rule for a single file:
 #!docs/README.md
 
+# Ignore modified files
 requirements.txt
+README.md
+.gitignore
+# The encoder has a bug and during generation see https://github.com/OpenAPITools/openapi-generator/pull/17144
 openapi_server/encoder.py
+# Prevent controller regeneration
 openapi_server/controllers/game_controller.py
 openapi_server/controllers/lobby_controller.py
 openapi_server/controllers/security_controller_.py
+# I don't want to have this file
 git_push.sh

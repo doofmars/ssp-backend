@@ -7,9 +7,13 @@ Video for reference: https://www.youtube.com/watch?v=Q2sDtTbzHiI
 
 # Recreate
 
-To recreate the API, run the following command:
+To recreate models or API, run the following command:
 ```bash
-docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate -i /local/api/api.yaml -g python-flask -o /local/ssp-backend-flask --ignore-file-override /local/ssp-backend-flask/.openapi-generator-ignore
+docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
+  -i /local/openapi_server/openapi/openapi.yaml \
+  -g python-flask \
+  -o /local \
+  --ignore-file-override /local/.openapi-generator-ignore
 ```
 
 ## Overview

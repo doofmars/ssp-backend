@@ -16,40 +16,40 @@ class GameGameIdTurnPostRequest(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, player=None, pawn=None, x=None, y=None, action=None):  # noqa: E501
+    def __init__(self, player=None, pawn=None, pos_x=None, pos_y=None, action=None):  # noqa: E501
         """GameGameIdTurnPostRequest - a model defined in OpenAPI
 
         :param player: The player of this GameGameIdTurnPostRequest.  # noqa: E501
         :type player: Player
         :param pawn: The pawn of this GameGameIdTurnPostRequest.  # noqa: E501
         :type pawn: Pawn
-        :param x: The x of this GameGameIdTurnPostRequest.  # noqa: E501
-        :type x: int
-        :param y: The y of this GameGameIdTurnPostRequest.  # noqa: E501
-        :type y: int
+        :param pos_x: The pos_x of this GameGameIdTurnPostRequest.  # noqa: E501
+        :type pos_x: int
+        :param pos_y: The pos_y of this GameGameIdTurnPostRequest.  # noqa: E501
+        :type pos_y: int
         :param action: The action of this GameGameIdTurnPostRequest.  # noqa: E501
         :type action: str
         """
         self.openapi_types = {
             'player': Player,
             'pawn': Pawn,
-            'x': int,
-            'y': int,
+            'pos_x': int,
+            'pos_y': int,
             'action': str
         }
 
         self.attribute_map = {
             'player': 'player',
             'pawn': 'pawn',
-            'x': 'x',
-            'y': 'y',
+            'pos_x': 'pos-x',
+            'pos_y': 'pos-y',
             'action': 'action'
         }
 
         self._player = player
         self._pawn = pawn
-        self._x = x
-        self._y = y
+        self._pos_x = pos_x
+        self._pos_y = pos_y
         self._action = action
 
     @classmethod
@@ -110,50 +110,50 @@ class GameGameIdTurnPostRequest(Model):
         self._pawn = pawn
 
     @property
-    def x(self) -> int:
-        """Gets the x of this GameGameIdTurnPostRequest.
+    def pos_x(self) -> int:
+        """Gets the pos_x of this GameGameIdTurnPostRequest.
 
 
-        :return: The x of this GameGameIdTurnPostRequest.
+        :return: The pos_x of this GameGameIdTurnPostRequest.
         :rtype: int
         """
-        return self._x
+        return self._pos_x
 
-    @x.setter
-    def x(self, x: int):
-        """Sets the x of this GameGameIdTurnPostRequest.
+    @pos_x.setter
+    def pos_x(self, pos_x: int):
+        """Sets the pos_x of this GameGameIdTurnPostRequest.
 
 
-        :param x: The x of this GameGameIdTurnPostRequest.
-        :type x: int
+        :param pos_x: The pos_x of this GameGameIdTurnPostRequest.
+        :type pos_x: int
         """
-        if x is None:
-            raise ValueError("Invalid value for `x`, must not be `None`")  # noqa: E501
+        if pos_x is None:
+            raise ValueError("Invalid value for `pos_x`, must not be `None`")  # noqa: E501
 
-        self._x = x
+        self._pos_x = pos_x
 
     @property
-    def y(self) -> int:
-        """Gets the y of this GameGameIdTurnPostRequest.
+    def pos_y(self) -> int:
+        """Gets the pos_y of this GameGameIdTurnPostRequest.
 
 
-        :return: The y of this GameGameIdTurnPostRequest.
+        :return: The pos_y of this GameGameIdTurnPostRequest.
         :rtype: int
         """
-        return self._y
+        return self._pos_y
 
-    @y.setter
-    def y(self, y: int):
-        """Sets the y of this GameGameIdTurnPostRequest.
+    @pos_y.setter
+    def pos_y(self, pos_y: int):
+        """Sets the pos_y of this GameGameIdTurnPostRequest.
 
 
-        :param y: The y of this GameGameIdTurnPostRequest.
-        :type y: int
+        :param pos_y: The pos_y of this GameGameIdTurnPostRequest.
+        :type pos_y: int
         """
-        if y is None:
-            raise ValueError("Invalid value for `y`, must not be `None`")  # noqa: E501
+        if pos_y is None:
+            raise ValueError("Invalid value for `pos_y`, must not be `None`")  # noqa: E501
 
-        self._y = y
+        self._pos_y = pos_y
 
     @property
     def action(self) -> str:

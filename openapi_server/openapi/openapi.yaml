@@ -12,7 +12,7 @@ info:
   title: SSP-Online Backend
   version: 1.0.0
 servers:
-- url: http://localhost:8080
+- url: /
 tags:
 - description: Lobby related code for finding and joining a game
   name: lobby
@@ -327,13 +327,13 @@ components:
           $ref: '#/components/schemas/Player'
         pawn:
           $ref: '#/components/schemas/Pawn'
-        "x":
+        pos-x:
           format: int64
-          title: "x"
+          title: x
           type: integer
-        "y":
+        pos-y:
           format: int64
-          title: "y"
+          title: pos-y
           type: integer
         action:
           enum:
@@ -349,7 +349,7 @@ components:
       required:
       - pawn
       - player
-      - "x"
-      - "y"
+      - pos-x
+      - pos-y
       title: _game__gameId__turn_post_request
       type: object
