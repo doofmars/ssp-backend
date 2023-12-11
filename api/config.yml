@@ -1,9 +1,7 @@
 additionalProperties:
   artifactId: ssp-backend
-  serializableModel: "true"
-  dateLibrary: java8
   groupId: de.doofmars
-  packageName: de.doofmars.ssp-backend
+  packageName: de.doofmars.ssp.backend
 # additionalModelTypeAnnotations
 #             Additional annotations for model type(class level annotations). List separated by semicolon(;) or new line (Linux or Windows)
 
