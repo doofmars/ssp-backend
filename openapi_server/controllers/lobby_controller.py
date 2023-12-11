@@ -22,7 +22,7 @@ def game_game_id_get(game_id):
     return 'do some magic!'
 
 
-def game_put(create_game):
+def game_put(create_game: CreateGame):
     """game_put
 
     Create a new game
