@@ -23,6 +23,13 @@ docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
   -c /local/api/config.yml
 ```
 
+## Development database
+
+To run the development database, run the following command:
+```bash
+docker run --rm -p 5432:5432 -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -e POSTGRES_DB="ssp_db" postgres
+```
+
 ## Requires
 
 * Kotlin 1.7.20
