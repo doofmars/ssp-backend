@@ -31,13 +31,10 @@ paths:
               $ref: '#/components/schemas/CreateGame'
         required: true
       responses:
-        '200':
+        '201':
           description: Successful operation
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/Game'
-            application/xml:
               schema:
                 $ref: '#/components/schemas/Game'
         '400':
