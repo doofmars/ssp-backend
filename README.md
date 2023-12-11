@@ -57,7 +57,7 @@ The server builds as a fat jar with a main entrypoint. To start the service, run
 
 You may also run in docker:
 
-```
+```bash
 docker build -t ssp-backend .
 docker run -p 8080:8080 ssp-backend
 ```
@@ -73,13 +73,12 @@ docker run -p 8080:8080 ssp-backend
 
 All URIs are relative to *http://localhost:8080*
 
-Class | Method | HTTP request | Description
------------- | ------------- | ------------- | -------------
-*GameApi* | [**gameGameIdTurnPost**](docs/GameApi.md#gamegameidturnpost) | **POST** /game/{gameId}/turn | 
-*LobbyApi* | [**gameGameIdGet**](docs/LobbyApi.md#gamegameidget) | **GET** /game/{gameId} | 
-*LobbyApi* | [**gamePut**](docs/LobbyApi.md#gameput) | **PUT** /game | 
-*LobbyApi* | [**gamesGet**](docs/LobbyApi.md#gamesget) | **GET** /games | 
-
+| Class      | Method                                                       | HTTP request                 | Description |
+|------------|--------------------------------------------------------------|------------------------------|-------------|
+| *GameApi*  | [**gameGameIdTurnPost**](docs/GameApi.md#gamegameidturnpost) | **POST** /game/{gameId}/turn |             |
+| *LobbyApi* | [**gameGameIdGet**](docs/LobbyApi.md#gamegameidget)          | **GET** /game/{gameId}       |             |
+| *LobbyApi* | [**gamePut**](docs/LobbyApi.md#gameput)                      | **PUT** /game                |             |
+| *LobbyApi* | [**gamesGet**](docs/LobbyApi.md#gamesget)                    | **GET** /games               |             |
 
 <a id="documentation-for-models"></a>
 ## Documentation for Models
