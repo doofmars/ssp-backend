@@ -33,7 +33,7 @@ fun Route.GameApi() {
     val gson = Gson()
     val empty = mutableMapOf<String, Any?>()
 
-    post<Paths.gameGameIdTurnPost> {
+    post<Paths.GameGameIdTurnPost> {
         val exampleContentType = "application/json"
         val exampleContentString = """{
           "currentRound" : 5,
@@ -71,7 +71,6 @@ fun Route.GameApi() {
         
         when (exampleContentType) {
             "application/json" -> call.respond(gson.fromJson(exampleContentString, empty::class.java))
-            "application/xml" -> call.respondText(exampleContentString, ContentType.Text.Xml)
             else -> call.respondText(exampleContentString)
         }
         

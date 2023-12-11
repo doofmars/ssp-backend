@@ -34,7 +34,7 @@ fun Route.LobbyApi() {
     val gson = Gson()
     val empty = mutableMapOf<String, Any?>()
 
-    get<Paths.gameGameIdGet> {
+    get<Paths.GameGameIdGet> {
         val exampleContentType = "application/json"
         val exampleContentString = """{
           "currentRound" : 5,
@@ -72,13 +72,12 @@ fun Route.LobbyApi() {
         
         when (exampleContentType) {
             "application/json" -> call.respond(gson.fromJson(exampleContentString, empty::class.java))
-            "application/xml" -> call.respondText(exampleContentString, ContentType.Text.Xml)
             else -> call.respondText(exampleContentString)
         }
         
     }
 
-    put<Paths.gamePut> {
+    put<Paths.GamePut> {
         val exampleContentType = "application/json"
         val exampleContentString = """{
           "currentRound" : 5,
@@ -116,13 +115,12 @@ fun Route.LobbyApi() {
         
         when (exampleContentType) {
             "application/json" -> call.respond(gson.fromJson(exampleContentString, empty::class.java))
-            "application/xml" -> call.respondText(exampleContentString, ContentType.Text.Xml)
             else -> call.respondText(exampleContentString)
         }
         
     }
 
-    get<Paths.gamesGet> {
+    get<Paths.GamesGet> {
         val exampleContentType = "application/json"
         val exampleContentString = """[ {
           "currentRound" : 5,
@@ -192,7 +190,6 @@ fun Route.LobbyApi() {
         
         when (exampleContentType) {
             "application/json" -> call.respond(gson.fromJson(exampleContentString, empty::class.java))
-            "application/xml" -> call.respondText(exampleContentString, ContentType.Text.Xml)
             else -> call.respondText(exampleContentString)
         }
         

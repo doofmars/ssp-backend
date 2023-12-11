@@ -15,6 +15,7 @@ import de.doofmars.ssp.backend.models.Board
 import de.doofmars.ssp.backend.models.GameStatus
 import de.doofmars.ssp.backend.models.Player
 
+import java.io.Serializable
 /**
  * 
  * @param id 
@@ -35,17 +36,20 @@ data class Game(
     val board: Board? = null,
     val status: GameStatus? = null,
     val lastUpdate: java.time.OffsetDateTime? = null
-) 
+) : Serializable 
 {
+    companion object {
+        private const val serialVersionUID: Long = 123
+    }
     /**
     * 
-    * Values: nONE,hOST,gUEST,dRAW
+    * Values: NONE,HOST,GUEST,DRAW
     */
     enum class Winner(val value: kotlin.String){
-        nONE("NONE"),
-        hOST("HOST"),
-        gUEST("GUEST"),
-        dRAW("DRAW");
+        NONE("NONE"),
+        HOST("HOST"),
+        GUEST("GUEST"),
+        DRAW("DRAW");
     }
 }
 

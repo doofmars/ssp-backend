@@ -18,27 +18,34 @@ buildscript {
     dependencies {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
         classpath("com.github.johnrengelman:shadow:$shadow_version")
+        classpath("org.jetbrains.kotlin:kotlin-serialization:$kotlin_version")
     }
 }
 
 apply plugin: "java"
 apply plugin: "kotlin"
 apply plugin: "application"
+apply plugin: "kotlinx-serialization"
 
-mainClassName = "io.ktor.server.netty.DevelopmentEngine"
+mainClassName = "io.ktor.server.netty.EngineMain"
 
 // Initialization order with shadow 2.0.1 and Gradle 6.9 is weird.
 // See https://github.com/johnrengelman/shadow/issues/336#issuecomment-355402508
 apply plugin: "com.github.johnrengelman.shadow"
 
-sourceCompatibility = 19
+shadowJar {
+    archiveClassifier.set('')
+    archiveVersion.set('')
+}
+
+sourceCompatibility = 18
 
 compileKotlin {
-    kotlinOptions.jvmTarget = "19"
+    kotlinOptions.jvmTarget = "18"
 }
 
 compileTestKotlin {
-    kotlinOptions.jvmTarget = "19"
+    kotlinOptions.jvmTarget = "18"
 }
 
 repositories {
@@ -58,9 +65,10 @@ dependencies {
     implementation("io.ktor:ktor-server-resources:$ktor_version")
     implementation("io.ktor:ktor-server-hsts:$ktor_version")
     implementation("io.ktor:ktor-server-compression:$ktor_version")
-    implementation("io.dropwizard.metrics:metrics-core:4.1.18")
-    implementation("io.ktor:ktor-server-metrics:$ktor_version")
+//    implementation("io.dropwizard.metrics:metrics-core:4.1.18")
+//    implementation("io.ktor:ktor-server-metrics:$ktor_version")
     implementation("io.ktor:ktor-server-netty:$ktor_version")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
 
     testImplementation("junit:junit:4.13.2")
 }

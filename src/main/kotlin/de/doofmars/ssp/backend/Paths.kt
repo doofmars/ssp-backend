@@ -21,24 +21,24 @@ object Paths {
      * @param gameId ID of game to return 
      * @param gameGameIdTurnPostRequest  
      */
-    @Serializable @Resource("/game/{gameId}/turn") class gameGameIdTurnPost(val gameId: kotlin.String, val gameGameIdTurnPostRequest: GameGameIdTurnPostRequest)
+    @Serializable @Resource("/game/{gameId}/turn") class GameGameIdTurnPost(val gameId: kotlin.String, val gameGameIdTurnPostRequest: GameGameIdTurnPostRequest)
 
     /**
      * Get information about a game
      * @param gameId ID of game to return 
      */
-    @Serializable @Resource("/game/{gameId}") class gameGameIdGet(val gameId: kotlin.String)
+    @Serializable @Resource("/game/{gameId}") class GameGameIdGet(val gameId: kotlin.String)
 
     /**
      * Create a new game
      * @param createGame  
      */
-    @Serializable @Resource("/game") class gamePut(val createGame: CreateGame)
+    @Serializable @Resource("/game") class GamePut(val createGame: CreateGame)
 
     /**
      * Get all games
      * @param status Status of the game (optional)
      */
-    @Serializable @Resource("/games") class gamesGet(val status: GameStatus? = null)
+    @Serializable @Resource("/games") class GamesGet(val status: GameStatus? = null)
 
 }

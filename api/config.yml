@@ -2,6 +2,7 @@ additionalProperties:
   artifactId: ssp-backend
   groupId: de.doofmars
   packageName: de.doofmars.ssp.backend
+  enumPropertyNaming: UPPERCASE
 # additionalModelTypeAnnotations
 #             Additional annotations for model type(class level annotations). List separated by semicolon(;) or new line (Linux or Windows)
 

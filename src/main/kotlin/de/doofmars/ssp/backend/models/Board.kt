@@ -13,6 +13,7 @@ package de.doofmars.ssp.backend.models
 
 import de.doofmars.ssp.backend.models.Pawn
 
+import java.io.Serializable
 /**
  * 
  * @param width 
@@ -23,5 +24,10 @@ data class Board(
     val width: kotlin.Long,
     val height: kotlin.Long,
     val grid: kotlin.collections.List<kotlin.collections.List<Pawn>>
-) 
+) : Serializable 
+{
+    companion object {
+        private const val serialVersionUID: Long = 123
+    }
+}
 

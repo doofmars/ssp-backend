@@ -12,11 +12,12 @@
 package de.doofmars.ssp.backend.models
 
 import de.doofmars.ssp.backend.models.Player
-
+import kotlinx.serialization.*
 /**
  * 
  * @param host 
  */
+@Serializable
 data class CreateGame(
     val host: Player
 ) 
