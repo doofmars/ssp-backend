@@ -1,0 +1,17 @@
+gradle.properties
+settings.gradle
+src/main/kotlin/de/doofmars/ssp/backend/AppMain.kt
+src/main/kotlin/de/doofmars/ssp/backend/Configuration.kt
+src/main/kotlin/de/doofmars/ssp/backend/Paths.kt
+src/main/kotlin/de/doofmars/ssp/backend/apis/GameApi.kt
+src/main/kotlin/de/doofmars/ssp/backend/apis/LobbyApi.kt
+src/main/kotlin/de/doofmars/ssp/backend/infrastructure/ApiKeyAuth.kt
+src/main/kotlin/de/doofmars/ssp/backend/models/Board.kt
+src/main/kotlin/de/doofmars/ssp/backend/models/CreateGame.kt
+src/main/kotlin/de/doofmars/ssp/backend/models/Game.kt
+src/main/kotlin/de/doofmars/ssp/backend/models/GameGameIdTurnPostRequest.kt
+src/main/kotlin/de/doofmars/ssp/backend/models/GameStatus.kt
+src/main/kotlin/de/doofmars/ssp/backend/models/Pawn.kt
+src/main/kotlin/de/doofmars/ssp/backend/models/Player.kt
+src/main/resources/application.conf
+src/main/resources/logback.xml
