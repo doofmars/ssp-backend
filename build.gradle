@@ -65,10 +65,9 @@ dependencies {
     implementation("io.ktor:ktor-server-resources:$ktor_version")
     implementation("io.ktor:ktor-server-hsts:$ktor_version")
     implementation("io.ktor:ktor-server-compression:$ktor_version")
-//    implementation("io.dropwizard.metrics:metrics-core:4.1.18")
-//    implementation("io.ktor:ktor-server-metrics:$ktor_version")
     implementation("io.ktor:ktor-server-netty:$ktor_version")
     implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
+    implementation "io.github.smiley4:ktor-swagger-ui:2.7.2"
 
     testImplementation("junit:junit:4.13.2")
 }

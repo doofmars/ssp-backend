@@ -9,14 +9,11 @@ import io.ktor.server.plugins.compression.*
 import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.plugins.defaultheaders.*
 import io.ktor.server.plugins.hsts.*
-import com.codahale.metrics.Slf4jReporter
-import io.ktor.server.metrics.dropwizard.*
-import java.util.concurrent.TimeUnit
 import io.ktor.server.routing.*
-import de.doofmars.ssp.backend.apis.GameApi
-import de.doofmars.ssp.backend.apis.LobbyApi
+import de.doofmars.ssp.backend.apis.gameApi
+import de.doofmars.ssp.backend.apis.lobbyApi
+import io.github.smiley4.ktorswaggerui.SwaggerUI
 import io.ktor.server.engine.*
-import io.ktor.server.metrics.dropwizard.*
 import io.ktor.server.netty.*
 
 fun main() {
@@ -27,23 +24,21 @@ fun main() {
 fun Application.main() {
     install(DefaultHeaders)
     // install open api spec plugin
-    install(OpenAPIGen) {
-        // configure open api spec here
+    install(SwaggerUI) {
+        swagger {
+            swaggerUrl = "swagger-ui"
+            forwardRoot = true
+        }
         info {
+            title = "SSP-Online Backend"
             version = "1.0.0"
-            title = "Swagger Petstore"
-            description = "A sample API that uses a petstore as an example to demonstrate features in the swagger-koa library"
-            contact {
-                name = "Swagger API Team"
-                email = "
-//    install(DropwizardMetrics) {
-//        val reporter = Slf4jReporter.forRegistry(registry)
-//            .outputTo(this@main.log)
-//            .convertRatesTo(TimeUnit.SECONDS)
-//            .convertDurationsTo(TimeUnit.MILLISECONDS)
-//            .build()
-//        reporter.start(10, TimeUnit.SECONDS)
-//    }
+            description = "This is a the backend for the SSP Online Game. It is a RESTful API that is used by the frontend to play the game."
+        }
+        server {
+            url = "http://localhost:8080"
+            description = "Development Server"
+        }
+    }
     install(ContentNegotiation) {
         register(ContentType.Application.Json, GsonConverter())
     }
@@ -52,8 +47,8 @@ fun Application.main() {
     install(HSTS, ApplicationHstsConfiguration()) // see https://ktor.io/docs/hsts.html
     install(Resources)
     install(Routing) {
-        GameApi()
-        LobbyApi()
+        gameApi()
+        lobbyApi()
     }
 
 }

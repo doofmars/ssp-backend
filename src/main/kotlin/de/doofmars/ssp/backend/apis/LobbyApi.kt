@@ -12,25 +12,14 @@
 package de.doofmars.ssp.backend.apis
 
 import com.google.gson.Gson
-import io.ktor.http.*
 import io.ktor.server.application.*
-import io.ktor.server.auth.*
 import io.ktor.server.response.*
 import de.doofmars.ssp.backend.Paths
-import io.ktor.server.resources.options
 import io.ktor.server.resources.get
-import io.ktor.server.resources.post
 import io.ktor.server.resources.put
-import io.ktor.server.resources.delete
-import io.ktor.server.resources.head
-import io.ktor.server.resources.patch
 import io.ktor.server.routing.*
-import de.doofmars.ssp.backend.infrastructure.ApiPrincipal
-import de.doofmars.ssp.backend.models.CreateGame
-import de.doofmars.ssp.backend.models.Game
-import de.doofmars.ssp.backend.models.GameStatus
 
-fun Route.LobbyApi() {
+fun Route.lobbyApi() {
     val gson = Gson()
     val empty = mutableMapOf<String, Any?>()
 
