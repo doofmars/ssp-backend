@@ -7,6 +7,9 @@ from openapi_server.models.create_game import CreateGame
 from openapi_server.models.game import Game
 from openapi_server.models.game_status import GameStatus
 from openapi_server import util
+from openapi_server.repos.game_repo import GameRepo
+
+game_repo = GameRepo()
 
 
 def game_game_id_get(game_id):
@@ -19,7 +22,10 @@ def game_game_id_get(game_id):
 
     :rtype: Union[Game, Tuple[Game, int], Tuple[Game, int, Dict[str, str]]
     """
-    return 'do some magic!'
+    game = game_repo.get_game(game_id)
+    if game is None:
+        return 404
+    return game.to_dict(), 200
 
 
 def game_put(create_game: CreateGame):
@@ -27,16 +33,16 @@ def game_put(create_game: CreateGame):
 
     Create a new game
 
-    :param create_game: 
+    :param create_game:
     :type create_game: dict | bytes
 
     :rtype: Union[Game, Tuple[Game, int], Tuple[Game, int, Dict[str, str]]
     """
-    game = Game.from_dict(create_game)
+    game = game_repo.create_game(Game.from_dict(create_game))
     return game.to_dict(), 201
 
 
-def games_get(status=None):
+def games_get(status: GameStatus = None):
     """games_get
 
     Get all games
@@ -46,4 +52,5 @@ def games_get(status=None):
 
     :rtype: Union[List[Game], Tuple[List[Game], int], Tuple[List[Game], int, Dict[str, str]]
     """
-    return 'do some magic!'
+    games = game_repo.get_games(status)
+    return [game.to_dict() for game in games], 200

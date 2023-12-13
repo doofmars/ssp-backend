@@ -46,7 +46,7 @@ paths:
       tags:
       - lobby
       x-openapi-router-controller: openapi_server.controllers.lobby_controller
-  /game/{gameId}:
+  /game/{game_id}:
     get:
       description: Get information about a game
       operationId: game_game_id_get
@@ -54,7 +54,7 @@ paths:
       - description: ID of game to return
         explode: false
         in: path
-        name: gameId
+        name: game_id
         required: true
         schema:
           $ref: '#/components/schemas/Id'
@@ -73,7 +73,7 @@ paths:
       tags:
       - lobby
       x-openapi-router-controller: openapi_server.controllers.lobby_controller
-  /game/{gameId}/turn:
+  /game/{game_id}/turn:
     post:
       description: Do a turn
       operationId: game_game_id_turn_post
@@ -81,7 +81,7 @@ paths:
       - description: ID of game to return
         explode: false
         in: path
-        name: gameId
+        name: game_id
         required: true
         schema:
           $ref: '#/components/schemas/Id'
