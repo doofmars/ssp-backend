@@ -29,6 +29,7 @@ README.md
 # The encoder has a bug and during generation see https://github.com/OpenAPITools/openapi-generator/pull/17144
 openapi_server/encoder.py
 # Prevent controller regeneration
+openapi_server/__main__.py
 openapi_server/controllers/game_controller.py
 openapi_server/controllers/lobby_controller.py
 openapi_server/controllers/security_controller_.py
