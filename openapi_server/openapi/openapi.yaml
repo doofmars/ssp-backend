@@ -203,6 +203,7 @@ components:
         status: null
       properties:
         id:
+          default: "0"
           format: int64
           title: id
           type: string
@@ -223,6 +224,7 @@ components:
           title: last_update
           type: string
         winner:
+          default: NONE
           enum:
           - NONE
           - HOST
@@ -232,10 +234,10 @@ components:
           type: string
       required:
       - currentRound
-      - guest
       - host
       - id
       - rounds
+      - status
       - winner
       title: Game
       type: object

@@ -7,6 +7,7 @@ from openapi_server.models.create_game import CreateGame
 from openapi_server.models.game import Game
 from openapi_server.models.game_status import GameStatus
 from openapi_server import util
+from openapi_server.models.game_util import create_game_to_game
 from openapi_server.repos.game_repo import GameRepo
 
 game_repo = GameRepo()
@@ -38,7 +39,9 @@ def game_put(create_game: CreateGame):
 
     :rtype: Union[Game, Tuple[Game, int], Tuple[Game, int, Dict[str, str]]
     """
-    game = game_repo.create_game(Game.from_dict(create_game))
+    # Serialize the CreateGame object into a Game object and set the required fields to their default values
+    game = create_game_to_game(create_game)
+    game = game_repo.create_game(game)
     return game.to_dict(), 201
 
 

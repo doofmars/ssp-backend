@@ -1,6 +1,9 @@
 import unittest
 
 from unittest.mock import MagicMock
+
+from bson import ObjectId
+
 from openapi_server.models import Game, GameStatus, Player
 
 import mongomock
@@ -20,7 +23,7 @@ class TestGameRepo(unittest.TestCase):
         cls.game_repo.games_collection = cls.mock_client.db.collection
 
     def test_get_game(self):
-        mock_game_id = "1234"
+        mock_game_id = ObjectId("42caffeaffeb401234567890")
         expected_name = "Mock Game"
         mock_game = {"_id": mock_game_id, "host": {"name": expected_name}, "status": "Playing"}
 

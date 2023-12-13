@@ -18,7 +18,7 @@ class Game(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, id=None, host=None, guest=None, board=None, status=None, current_round=None, last_update=None, winner=None):  # noqa: E501
+    def __init__(self, id='0', host=None, guest=None, board=None, status=None, current_round=None, last_update=None, winner='NONE'):  # noqa: E501
         """Game - a model defined in OpenAPI
 
         :param id: The id of this Game.  # noqa: E501
@@ -144,8 +144,6 @@ class Game(Model):
         :param guest: The guest of this Game.
         :type guest: Player
         """
-        if guest is None:
-            raise ValueError("Invalid value for `guest`, must not be `None`")  # noqa: E501
 
         self._guest = guest
 
@@ -188,6 +186,8 @@ class Game(Model):
         :param status: The status of this Game.
         :type status: GameStatus
         """
+        if status is None:
+            raise ValueError("Invalid value for `status`, must not be `None`")  # noqa: E501
 
         self._status = status
 
