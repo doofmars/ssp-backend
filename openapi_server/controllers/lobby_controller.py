@@ -25,7 +25,7 @@ def game_game_id_get(game_id):
     """
     game = game_repo.get_game(game_id)
     if game is None:
-        return 404
+        return None, 404
     return game.to_dict(), 200
 
 
@@ -57,3 +57,20 @@ def games_get(status: GameStatus = None):
     """
     games = game_repo.get_games(status)
     return [game.to_dict() for game in games], 200
+
+
+def game_game_id_delete(game_id):
+    """game_game_id_delete
+
+    Delete a game
+
+    :param game_id: ID of game to delete
+    :type game_id: str
+
+    :rtype: Union[Game, Tuple[Game, int], Tuple[Game, int, Dict[str, str]]
+    """
+    game = game_repo.get_game(game_id)
+    if game is None:
+        return None, 404
+    game_repo.delete_game(game_id)
+    return None, 200

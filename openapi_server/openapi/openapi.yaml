@@ -47,6 +47,28 @@ paths:
       - lobby
       x-openapi-router-controller: openapi_server.controllers.lobby_controller
   /game/{game_id}:
+    delete:
+      description: Delete a game
+      operationId: game_game_id_delete
+      parameters:
+      - description: ID of game to delete
+        explode: false
+        in: path
+        name: game_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/Id'
+        style: simple
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Game not found
+      tags:
+      - lobby
+      x-openapi-router-controller: openapi_server.controllers.lobby_controller
     get:
       description: Get information about a game
       operationId: game_game_id_get
@@ -143,7 +165,7 @@ paths:
 components:
   schemas:
     Id:
-      format: int64
+      pattern: "^[0-9a-fA-F]{24}$"
       title: id
       type: string
     GameStatus:

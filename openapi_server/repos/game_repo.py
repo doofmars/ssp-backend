@@ -15,6 +15,8 @@ class GameRepo:
         :param game_id: The id of the game in the database.
         :return: The game object with the matching id, or None if no matching game was found.
         """
+        if not ObjectId.is_valid(game_id):
+            return None
         game_dict = self.games_collection.find_one({"_id": ObjectId(game_id)})
         if game_dict is None:
             return None
@@ -58,3 +60,8 @@ class GameRepo:
         else:
             game_dicts = self.games_collection.find({"status": str(status)})
         return [Game.from_dict(game_dict) for game_dict in game_dicts]
+
+    def delete_game(self, game_id):
+        if not ObjectId.is_valid(game_id):
+            return
+        self.games_collection.delete_one({"_id": ObjectId(game_id)})
