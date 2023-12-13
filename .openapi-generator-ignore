@@ -33,5 +33,7 @@ openapi_server/__main__.py
 openapi_server/controllers/game_controller.py
 openapi_server/controllers/lobby_controller.py
 openapi_server/controllers/security_controller_.py
+openapi_server/test/test_game_controller.py
+openapi_server/test/test_lobby_controller.py
 # I don't want to have this file
 git_push.sh
