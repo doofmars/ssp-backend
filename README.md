@@ -1,7 +1,7 @@
 # ssp-backend
 The game backend service for [ssp-online](https://github.com/doofmars/ssp-online) play [here](https://doofmars.github.io/ssp-online/)
 
-Created during for studies course Middleware Technology 
+Created during for studies course Middleware Technology
 
 Video for reference: https://www.youtube.com/watch?v=Q2sDtTbzHiI
 
@@ -14,6 +14,18 @@ docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
   -g python-flask \
   -o /local \
   --ignore-file-override /local/.openapi-generator-ignore
+```
+
+# Local development
+
+To run the server locally, you need to have a local database running. The easiest way to do this is to use docker-compose:
+```bash
+docker-compose -f dev-docker-compose.yml up -d
+```
+
+The following environment variables are required to run the server locally:
+```
+DB_HOST=localhost;DB_USERNAME=root;DB_PASSWORD=example
 ```
 
 ## Overview
@@ -63,3 +75,21 @@ docker build -t openapi_server .
 # starting up a container
 docker run -p 8080:8080 openapi_server
 ```
+
+## Running with Docker Compose
+
+To run the server on a Docker container using Docker Compose, please execute the following from the root directory:
+
+```bash
+docker-compose up -d
+```
+
+## Environment variables
+The following environment variables are required to run the server:
+
+| Name          | Description               | Default |
+|---------------|---------------------------|---------|
+| `DB_HOST`     | Hostname of the database  |         |
+| `DB_USERNAME` | Username for the database |         |
+| `DB_PASSWORD` | Password for the database |         |
+| `DB_PORT`     | Port of the database      | `27017` |

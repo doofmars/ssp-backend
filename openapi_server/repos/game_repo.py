@@ -1,3 +1,5 @@
+import os
+
 import pymongo
 from bson import ObjectId
 
@@ -6,7 +8,11 @@ from openapi_server.models import Game, GameStatus
 
 class GameRepo:
     def __init__(self):
-        mongo_client = pymongo.MongoClient("mongodb://root:example@localhost:27017/")
+        user = os.environ.get("DB_USERNAME")
+        password = os.environ.get("DB_PASSWORD")
+        host = os.environ.get("DB_HOST")
+        port = os.environ.get("DB_PORT", 27017)
+        mongo_client = pymongo.MongoClient(f"mongodb://{user}:{password}@{host}:{port}/")
         db = mongo_client["ssp_db"]
         self.games_collection = db["games"]
 
