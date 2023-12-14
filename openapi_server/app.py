@@ -1,16 +1,5 @@
-from flask import render_template  # Remove: import Flask
+from .factory import start_server
 
-import connexion
-
-
-app = connexion.FlaskApp(__name__, specification_dir='./openapi/')
-
-app.add_api("openapi.yaml")
-
-
-@app.route("/")
-def home():
-    return render_template("index.html")
-
-
-app.run(host="0.0.0.0", port=8080)
+# This is the entrypoint for the application when running locally as flask app
+# Usage example: flask run
+start_server()
