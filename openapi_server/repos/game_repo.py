@@ -16,7 +16,7 @@ class GameRepo:
         db = mongo_client["ssp_db"]
         self.games_collection = db["games"]
 
-    def get_game(self, game_id):
+    def get_game(self, game_id: str) -> Game | None:
         """
         :param game_id: The id of the game in the database.
         :return: The game object with the matching id, or None if no matching game was found.
@@ -27,7 +27,7 @@ class GameRepo:
         if game_dict is None:
             return None
         game = Game.from_dict(game_dict)
-        game.id = game_dict["_id"]
+        game.id = game_id
         return game
 
     def create_game(self, game: Game) -> Game:
@@ -65,7 +65,13 @@ class GameRepo:
             game_dicts = self.games_collection.find()
         else:
             game_dicts = self.games_collection.find({"status": str(status)})
-        return [Game.from_dict(game_dict) for game_dict in game_dicts]
+        # convert game dicts to game objects
+        games = []
+        for game_dict in game_dicts:
+            game = Game.from_dict(game_dict)
+            game.id = str(game_dict["_id"])
+            games.append(game)
+        return games
 
     def delete_game(self, game_id):
         if not ObjectId.is_valid(game_id):

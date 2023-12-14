@@ -50,7 +50,7 @@ class TestGameRepo(unittest.TestCase):
         self.assertEqual(mock_result.inserted_id, result.id)
 
     def test_update_game(self):
-        mock_game = Game(id="1234", host=Player(name="foo"), status=GameStatus.RUNNING_FIGHT)
+        mock_game = Game(id="42caffeaffeb401234567890", host=Player(name="foo"), status=GameStatus.RUNNING_FIGHT)
         mock_game_dict = mock_game.to_dict()
 
         self.game_repo.games_collection.update_one = MagicMock()
