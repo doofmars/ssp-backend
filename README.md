@@ -8,12 +8,23 @@ Video for reference: https://www.youtube.com/watch?v=Q2sDtTbzHiI
 # Recreate
 
 To recreate models or API, run the following command:
+
+For the backend server:
 ```bash
 docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
   -i /local/openapi_server/openapi/openapi.yaml \
   -g python-flask \
   -o /local \
   --ignore-file-override /local/.openapi-generator-ignore
+```
+
+For the frontend axios client:
+```bash
+docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
+  -i /local/openapi_server/openapi/openapi.yaml \
+  -g typescript-axios \
+  -o /local/admin-frontend/api-client \
+  --ignore-file-override /local/admin-frontend/api-client/.openapi-generator-ignore
 ```
 
 # Local development
