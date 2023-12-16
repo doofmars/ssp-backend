@@ -23,7 +23,7 @@ For the frontend axios client:
 docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
   -i /local/openapi_server/openapi/openapi.yaml \
   -g typescript-axios \
-  -o /local/admin-frontend/api-client \
+  -o /local/admin-frontend/src/api-client \
   --ignore-file-override /local/admin-frontend/api-client/.openapi-generator-ignore
 ```
 
