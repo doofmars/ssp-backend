@@ -5,28 +5,6 @@ Created during for studies course Middleware Technology
 
 Video for reference: https://www.youtube.com/watch?v=Q2sDtTbzHiI
 
-# Recreate
-
-To recreate models or API, run the following command:
-
-For the backend server:
-```bash
-docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
-  -i /local/openapi_server/openapi/openapi.yaml \
-  -g python-flask \
-  -o /local \
-  --ignore-file-override /local/.openapi-generator-ignore
-```
-
-For the frontend axios client:
-```bash
-docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
-  -i /local/openapi_server/openapi/openapi.yaml \
-  -g typescript-axios \
-  -o /local/admin-frontend/src/api-client \
-  --ignore-file-override /local/admin-frontend/api-client/.openapi-generator-ignore
-```
-
 # Local development
 
 To run the server locally, you need to have a local database running. The easiest way to do this is to use docker-compose:
@@ -105,3 +83,29 @@ The following environment variables are required to run the server:
 | `DB_USERNAME` | Username for the database |         |
 | `DB_PASSWORD` | Password for the database |         |
 | `DB_PORT`     | Port of the database      | `27017` |
+
+
+# Recreate the API
+
+The idea of this project was to rely on api generation.
+This allows to rapidly change the API and recreate the models and API.
+The compiler will tell you if you have to change something in the code.
+To recreate models or API, run the following command:
+
+For the backend server:
+```bash
+docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
+  -i /local/openapi_server/openapi/openapi.yaml \
+  -g python-flask \
+  -o /local \
+  --ignore-file-override /local/.openapi-generator-ignore
+```
+
+For the frontend axios client:
+```bash
+docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
+  -i /local/openapi_server/openapi/openapi.yaml \
+  -g typescript-axios \
+  -o /local/admin-frontend/src/api-client \
+  --ignore-file-override /local/admin-frontend/api-client/.openapi-generator-ignore
+```
