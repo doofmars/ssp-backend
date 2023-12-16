@@ -9,6 +9,14 @@ docker build -t ssp-admin .
 docker run -it -p 3000:80 ssp-admin
 ```
 
+## Setup dependencies
+
+To install the dependencies, run:
+
+```bash
+npm install
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
