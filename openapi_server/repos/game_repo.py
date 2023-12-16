@@ -1,4 +1,5 @@
 import os
+from typing import Optional
 
 import pymongo
 from bson import ObjectId
@@ -16,7 +17,7 @@ class GameRepo:
         db = mongo_client["ssp_db"]
         self.games_collection = db["games"]
 
-    def get_game(self, game_id: str) -> Game | None:
+    def get_game(self, game_id: str) -> Optional[Game]:
         """
         :param game_id: The id of the game in the database.
         :return: The game object with the matching id, or None if no matching game was found.
