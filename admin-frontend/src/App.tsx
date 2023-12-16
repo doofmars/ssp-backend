@@ -58,12 +58,14 @@ function App() {
             <header className="App-header">
                 <h1>Links</h1>
                 <a href={baseurl + '/api/ui'}>Swagger UI {baseurl + '/api/ui'}</a>
-                <a href={baseurl + '/express'}>Mongo Express {baseurl + '/express'}</a>
-                <p>
+                <div>
+                    <a href={baseurl + '/express'}>Mongo Express {baseurl + '/express'}</a>
                     Username: <b>admin</b> Password: <b>example</b>
-                </p>
+                </div>
                 <h1>Games</h1>
-                Create new game <button onClick={handleCreate}>Create</button>
+                <div>
+                    Create new game <button onClick={handleCreate}>Create</button>
+                </div>
                 <table>
                     <thead>
                     <tr>
