@@ -1,0 +1,60 @@
+.App {
+    text-align: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
+}
+
+.App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: normal;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+/* Style the buttons */
+
+button {
+    border: none;
+    outline: none;
+    padding: 12px 16px;
+    margin: 1px;
+    background-color: rgb(61, 113, 189);
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* Style the links inside the navigation bar */
+
+a {
+    padding: 12px 16px;
+    text-decoration: none;
+    color: rgb(61, 113, 189);
+    display: block;
+}
+
+/* Style the tables with striped rows */
+
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    text-align: left;
+    padding: 10px;
+}
+
+tr:nth-child(even) {
+    background-color: rgb(31, 58, 98)
+}
+
+h1 {
+    margin-bottom: 15px;
+}

@@ -5,3 +5,4 @@ Flask==3.0.0
 flask_testing==0.8.1
 pymongo==4.6.1
 mongomock==4.1.2
+starlette~=0.32.0.post1
