@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
-import {Configuration, Game, LobbyApi} from "./api-client";
+import {Configuration, Game, CreateGame, LobbyApi} from "./api-client";
 
 function App() {
     // Development configuration
@@ -19,17 +19,39 @@ function App() {
             }
         );
     }
-    const openapi = new LobbyApi(openapiConfig);
+    const lobbyApi = new LobbyApi(openapiConfig);
 
     const [games, setGames] = useState<Game[]>([]);
 
     useEffect(() => {
-        openapi.gamesGet().then((res) => {
+        lobbyApi.gamesGet().then((res) => {
             setGames(res.data);
         }).catch((err) => {
             console.log(err);
         });
     }, []);
+
+    const handleDelete = async (gameId: string) => {
+        try {
+            await lobbyApi.gameGameIdDelete(gameId);
+            setGames(games.filter(game => game.id !== gameId));
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    const handleCreate = async () => {
+        try {
+            const createGame: CreateGame = {'host': {'name': 'test'}}
+            await lobbyApi.gamePut(createGame).then((res) => {
+                setGames([...games, res.data]);
+            }).catch((err) => {
+                console.log(err);
+            });
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
     return (
         <div className="App">
@@ -41,8 +63,7 @@ function App() {
                     Username: <b>admin</b> Password: <b>example</b>
                 </p>
                 <h1>Games</h1>
-                Create new game <button>Create</button>
-
+                Create new game <button onClick={handleCreate}>Create</button>
                 <table>
                     <thead>
                     <tr>
@@ -62,7 +83,7 @@ function App() {
                             <td>{game.status}</td>
                             <td>
                                 <button>Edit</button>
-                                <button>Delete</button>
+                                <button onClick={() => handleDelete(game.id)}>Delete</button>
                             </td>
                         </tr>
                     ))}
