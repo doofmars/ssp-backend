@@ -3,12 +3,12 @@ import './App.css';
 import {Configuration, Game, LobbyApi} from "./api-client";
 
 function App() {
-    const openapiConfig = new Configuration(
-        {
-            basePath: "http://localhost:8080"
-        }
-    );
-    const openapi = new LobbyApi(openapiConfig);
+    // const openapiConfig = new Configuration(
+    //     {
+    //         basePath: "http://localhost:8080"
+    //     }
+    // );
+    const openapi = new LobbyApi();
 
     const [games, setGames] = useState<Game[]>([]);
 
