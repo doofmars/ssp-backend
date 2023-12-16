@@ -1,5 +1,6 @@
 version: '3'
 services:
+    # Database container
     mongo:
         image: mongo
         restart: always
@@ -8,8 +9,10 @@ services:
             MONGO_INITDB_ROOT_PASSWORD: example
         expose:
             - "27017"
-    #    volumes:
-    #      - mongodb_data_container:/data/db
+        volumes:
+          - ./mongodb_data_container:/data/db
+
+    # Admin interface for the database
     mongo-express:
         image: mongo-express
         restart: always
@@ -25,6 +28,7 @@ services:
         depends_on:
             - mongo
 
+    # Backend server for the game including swagger documentation
     backend:
         build:
             context: .
@@ -38,6 +42,7 @@ services:
         depends_on:
             - mongo
 
+    # Minimal admin frontend for the game
     admin-frontend:
         build:
             context: ./admin-frontend
@@ -47,7 +52,7 @@ services:
         depends_on:
             - backend
 
-    # nginx-reverse-proxy this will be used to solve issues of cross-origin requests from the admin-frontend to the backend
+    # Nginx-reverse-proxy this will be used to solve issues of cross-origin requests from the admin-frontend to the backend
     reverse-proxy:
         image: nginx:alpine
         ports:
@@ -57,5 +62,6 @@ services:
         depends_on:
             - backend
             - admin-frontend
+
 volumes:
     mongodb_data_container:
