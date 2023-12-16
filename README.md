@@ -34,7 +34,7 @@ To run the server locally, you need to have a local database running. The easies
 docker-compose -f dev-docker-compose.yml up -d
 ```
 
-The following environment variables are required to run the server locally:
+The following environment variables are required to run the backend locally:
 ```
 DB_HOST=localhost;DB_USERNAME=root;DB_PASSWORD=example
 ```
@@ -89,7 +89,8 @@ docker run -p 8080:8080 openapi_server
 
 ## Running with Docker Compose
 
-To run the server on a Docker container using Docker Compose, please execute the following from the root directory:
+To build and run the server, frontend, database and reverse proxy as Docker containers using Docker Compose,
+execute the following from the root directory:
 
 ```bash
 docker-compose up -d

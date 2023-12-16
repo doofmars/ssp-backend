@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Admin frontend for SSP-Backend
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -16,6 +16,13 @@ To install the dependencies, run:
 ```bash
 npm install
 ```
+
+## Local development
+
+The application expects the backend to be running on `http://localhost:8080`.
+To run the backend locally, you also need to have a local database running.
+Refer to the [backend README](../README.md) for instructions on how to do this.
+
 
 ## Available Scripts
 
