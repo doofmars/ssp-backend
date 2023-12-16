@@ -12,7 +12,7 @@ info:
   title: SSP-Online Backend
   version: 1.0.0
 servers:
-- url: /
+- url: http://localhost:8080/api
 tags:
 - description: Lobby related code for finding and joining a game
   name: lobby

@@ -44,12 +44,10 @@ services:
             dockerfile: Dockerfile
         expose:
             - "80"
-        environment:
-            REACT_APP_API_URL: http://backend:8080
         depends_on:
             - backend
 
-    # nginx-reverse-proxy this will be used to solve issues of cross origin requests from the admin-frontend to the backend
+    # nginx-reverse-proxy this will be used to solve issues of cross-origin requests from the admin-frontend to the backend
     reverse-proxy:
         image: nginx:alpine
         ports:

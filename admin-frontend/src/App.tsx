@@ -3,12 +3,23 @@ import './App.css';
 import {Configuration, Game, LobbyApi} from "./api-client";
 
 function App() {
-    // const openapiConfig = new Configuration(
-    //     {
-    //         basePath: "http://localhost:8080"
-    //     }
-    // );
-    const openapi = new LobbyApi();
+    // Development configuration
+    let openapiConfig = new Configuration(
+        {
+            basePath: process.env.REACT_APP_API_URL + "/api"
+        }
+    );
+    let baseurl = process.env.REACT_APP_API_URL;
+    // Production configuration, here we have a reverse proxy that redirects /api to the api server
+    if (process.env.NODE_ENV === 'production') {
+        baseurl = window.location.origin
+        openapiConfig = new Configuration(
+            {
+                basePath: "/api"
+            }
+        );
+    }
+    const openapi = new LobbyApi(openapiConfig);
 
     const [games, setGames] = useState<Game[]>([]);
 
@@ -23,6 +34,12 @@ function App() {
     return (
         <div className="App">
             <header className="App-header">
+                <h1>Links</h1>
+                <a href={baseurl + '/api/ui'}>Swagger UI {baseurl + '/api/ui'}</a>
+                <a href={baseurl + '/express'}>Mongo Express {baseurl + '/express'}</a>
+                <p>
+                    Username: <b>admin</b> Password: <b>example</b>
+                </p>
                 <h1>Games</h1>
                 Create new game <button>Create</button>
 
