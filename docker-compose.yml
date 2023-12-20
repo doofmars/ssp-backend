@@ -52,16 +52,21 @@ services:
         depends_on:
             - backend
 
-    # Nginx-reverse-proxy this will be used to solve issues of cross-origin requests from the admin-frontend to the backend
-    reverse-proxy:
-        image: nginx:alpine
+    # traefik-reverse-proxy this will be used to solve issues of cross-origin requests from the admin-frontend to the backend
+    traefik:
+        image: traefik:v2.10.7
+        command:
+            - "--api.insecure=true"
+            - "--providers.file.filename=/etc/traefik/traefik.yml"
         ports:
-            - "8080:80"
+            - "80:80"
+            - "8080:8080"
         volumes:
-            - ./nginx-reverse_proxy.conf:/etc/nginx/nginx.conf:ro
+            - ./traefik-config:/etc/traefik
         depends_on:
             - backend
             - admin-frontend
 
 volumes:
     mongodb_data_container:
+    traefik-config:

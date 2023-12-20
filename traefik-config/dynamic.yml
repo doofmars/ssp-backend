@@ -1,0 +1,29 @@
+http:
+    routers:
+        router-backend:
+            rule: "PathPrefix(`/api`)"
+            service: service-backend
+
+        router-admin-frontend:
+            rule: "PathPrefix(`/`)"
+            service: service-admin-frontend
+
+        router-mongo-express:
+            rule: "PathPrefix(`/express`)"
+            service: service-mongo-express
+
+    services:
+        service-backend:
+            loadBalancer:
+                servers:
+                    - url: "http://backend:8080"
+
+        service-admin-frontend:
+            loadBalancer:
+                servers:
+                    - url: "http://admin-frontend"
+
+        service-mongo-express:
+            loadBalancer:
+                servers:
+                    - url: "http://mongo-express:8081"
